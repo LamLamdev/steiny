@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stein Whack-a-Rat</title>
+
+  <!-- Fredoka One font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <body>
+    <!-- background audio -->
+    <audio id="bg-audio" src="rat.mp3" loop muted></audio>
+  
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <img src="stein.png" alt="Logo" class="logo-img" />
+          <span class="token-name">$STEIN</span>
+        </div>
+        <nav class="site-nav">
+          <a href="https://x.com/i/communities/1935447275628884096" target="_blank" rel="noopener">SOCIALS</a>
+          <a href="#meet-stein">MEET STEIN</a>
+          <!--  🔊 / 🔇 toggle button -->
+          <button id="audio-toggle" aria-label="Toggle music">🔊</button>
+        </nav>
+      </div>
+    </header>
+    …
+  
+
+
+  
+  <!-- ========== HERO / GAME ========== -->
+  <div class="hero">
+    <div class="game-window">
+
+      <!-- HUD: Score, Timer & Lives -->
+      <div id="score" class="score">Score: 0</div>
+      <div id="timer" class="timer">01:00</div>
+      <div id="hearts" class="hearts">❤️ ❤️ ❤️</div>
+
+      <!-- START SCREEN -->
+      <div id="start-screen" class="overlay">
+        <h1>WHACK-A-JEW</h1>
+        <button id="start-btn">START GAME</button>
+      </div>
+
+      <!-- GAME OVER SCREEN -->
+      <div id="game-over-screen" class="overlay hidden">
+        <h1>GAME OVER</h1>
+        <p>Your Score: <span id="final-score">0</span></p>
+        <button id="play-again-btn">PLAY AGAIN</button>
+      </div>
+
+      <!-- Board & Holes -->
+      <img src="board.png" class="board" alt="Board" />
+      <img src="holes.png" class="hole" style="top: 60%; left: 30%;" />
+      <img src="holes.png" class="hole" style="top: 60%; left: 50%;" />
+      <img src="holes.png" class="hole" style="top: 60%; left: 70%;" />
+
+    </div> <!-- /.game-window -->
+
+    <!-- Instructional text below the game -->
+    <div class="instructions">
+      WHACK STEINY THE JEW RAT AND AVOID THE FLAG!
+    </div>
+  </div> <!-- /.hero -->
+
+  <!-- ========== MEET STEIN SECTION ========== -->
+  <section id="meet-stein" class="meet-stein">
+    <div class="inner">
+      <div class="text">
+        <h2>Meet Steiny 🐀</h2>
+        <p>
+          Steiny is a crooked little jew rat with a deceptively charming grin, but don’t be fooled. Beneath his cuddly whiskers lurks a devious jew schemer, gnawing through wallets and wreaking relentless havoc on the blockchain. Ready to embrace the chaos?
+        </p>
+        <p class="contract-label">Contact address</p>
+        <div class="buttons">
+          <button class="contract-btn" data-addr="HzC1RLQhbV5hpFLw2EYhi9iWNWoN365xDvtYHv9vpump">
+            <span class="contract-prefix"></span>
+            <span class="contract-divider"></span>
+            <span class="contract-address">HzC1RLQhbV5hpFLw2EYhi9iWNWoN365xDvtYHv9vpump</span>
+          </button>
+        </div>
+      </div>
+      <div class="portrait">
+        <img src="stein.png".png" alt="Stein Idle" id="stein-img" />
+      </div>
+    </div>
+  </section>
+
+  <script src="game.js"></script>
+  <script>
+    // Copy-to-clipboard for the contract button
+    document.querySelectorAll('.contract-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const addr = btn.dataset.addr;
+        navigator.clipboard.writeText(addr).then(() => {
+          btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = addr, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

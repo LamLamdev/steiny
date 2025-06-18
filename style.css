@@ -1,0 +1,343 @@
+/* ============= Reset & Layout ============= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+body {
+  background: #6887dc;
+  display: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ─── Sticky Site Header ─────────────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #a54af5;           /* dark bg to match site */
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.header-inner {
+  max-width: 1024px;          /* match your page width */
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo + token name */
+.logo {
+  display: flex;
+  align-items: center;
+  
+   
+  
+}
+
+.logo-img {
+  height: 42px;
+  width: 41px;
+  display: block;
+  border-radius: 50%;
+  border: 2px solid #000;
+   
+}
+
+.token-name {
+  margin-left: 0.5rem;
+  font-size: 1.45rem;
+  font-weight: bold;
+  color: #fffb00;             /* bright accent */
+}
+
+/* Nav links */
+.site-nav a {
+  margin-left: 1.25rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.site-nav a:hover {
+  color: #1d9bf0;
+}
+
+/* audio toggle */
+#audio-toggle {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  margin-left: 2.25rem;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.2s;
+}
+#audio-toggle:hover {
+  color: #1d9bf0;
+}
+
+
+/* Mobile tweak: stack nav under logo on very small screens */
+@media (max-width: 480px) {
+  .header-inner {
+    flex-direction: column;
+    height: auto;
+    padding: 0.75rem;
+  }
+  .site-nav {
+    margin-top: 0.5rem;
+  }
+  .site-nav a {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+}
+
+
+
+/* ============= Hero & Game Window ============= */
+.hero {
+  text-align: center;
+  
+}
+.game-window {
+  position: relative;
+  width: 700px;
+  height: 400px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  border: 2px solid #222;
+  margin-top: 3rem; /* tweak this value to taste */
+}
+
+/* Board & Holes */
+.board {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hole {
+  position: absolute;
+  width: 90px;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* ============= HUD ============= */
+.score {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  color: #fff;
+  font-size: 20px;
+  z-index: 4;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 4px #000;
+}
+.timer {
+  position: absolute;
+  top: 8px;
+  left: 100px;
+  color: #fff;
+  font-size: 20px;
+  z-index: 4;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 4px #000;
+}
+.hearts {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 24px;
+  z-index: 4;
+  user-select: none;
+}
+
+/* ============= Overlays ============= */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+.overlay.hidden {
+  display: none;
+}
+.overlay h1 {
+  color: #eaff00;
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+  font-family: 'Fredoka One', cursive;
+}
+.overlay p {
+  color: #eee;
+  margin-bottom: 16px;
+  font-size: 1.25rem;
+}
+.overlay button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background: #1d9bf0;
+  color: #fff;
+  border: none;
+  border-radius: 80px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Fredoka One', cursive;
+}
+.overlay button:hover {
+  background: #0d8ae0;
+}
+
+/* ============= Instruction Text ============= */
+.instructions {
+  margin-top: 16px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.25rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  user-select: none;
+}
+
+/* ============= Hammer & Stein Filters ============= */
+/* if you ever want to tweak e.g. saturation on hit-sprites: */
+img[src$="hit.png"],
+img[src$="smashed.png"] {
+  /* example: boost saturation */
+  filter: saturate(1.3);
+}
+
+
+/* ========== Meet Stein Section ========== */
+.meet-stein {
+  padding: 120px 16px 200px;  /* top 120px, sides 16px, bottom 120px */
+  background: hsl(240, 30%, 22%);
+  color: #fff;
+  font-family: 'Fredoka One', sans-serif;
+  margin-top: 7rem;
+}
+.meet-stein .inner {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.meet-stein .text {
+  flex: 1 1 320px;
+}
+.meet-stein .text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+.meet-stein .text p {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+.meet-stein .buttons {
+  display: flex;
+  align-items: center;
+}
+/* make the bubble a flex container */
+.meet-stein .contract-btn {
+  background: #fff;
+  color: #151515;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  font-family: monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  margin-top: -1rem;
+}
+
+.meet-stein .contract-btn:active {
+  background-color: #6fd8fb;  /* light-blue flash on click */
+}
+
+
+/* prefix “CA” styling (optional) */
+.contract-prefix {
+  font-weight: bold;
+}
+
+
+
+/* address text */
+.contract-address {
+  font-family: monospace;
+}
+
+.meet-stein .contract-btn:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.meet-stein .portrait {
+  /* make the container a perfect square */
+  flex: 0 0 auto;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.meet-stein .portrait img {
+  /* fill that square and mask to a circle */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  animation: float 3s ease-in-out infinite;
+}
+
+/* simple up/down bob */
+@keyframes float {
+  0%, 100%   { transform: translateY(0); }
+  50%        { transform: translateY(-16px); }
+}
+
+.contract-label {
+  font-family: 'Fredoka One', cursive;
+  color: #ffff00;
+  font-size: 1rem;
+  margin: 0 0 0.5rem;   /* small gap below the label */
+  user-select: none;
+  margin-top: 4rem;
+  margin-left: 6.2rem;
+}
